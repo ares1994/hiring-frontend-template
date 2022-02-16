@@ -41,8 +41,8 @@ function UserInfo({
   return (
     <View style={{ flexDirection: "column",flex:1,alignItems:"stretch",justifyContent:"space-between",height:100,marginStart:10 }}>
       <View>
-          <Text style={styles.name}>{name}</Text>
-          {email&&<Text style={styles.email}>{email}</Text>}
+          <Text style={styles.title}>{name}</Text>
+          {email&&<Text style={styles.subTitle}>{email}</Text>}
           {
               status==="upcoming"&&<UserStartEndTime
               starts_at={starts_at}

@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
         paddingVertical:15,
 
     },
-    name:{
+    title:{
         fontWeight:"700",
         fontSize:18
     },
-    email:{ color: "#bbb", fontWeight:"500",marginTop: 2 },
+    subTitle:{ color: "#bbb", fontWeight:"500",marginTop: 2 },
     date:{ color: "#999", fontWeight:"700", fontSize: 15, marginTop: 2 }
 });
 

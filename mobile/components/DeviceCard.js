@@ -27,8 +27,8 @@ function DeviceInfo({
             marginStart: 10
         }}>
             <View>
-                <Text style={styles.name}>{name}</Text>
-                <Text style={styles.email}>{model_number}</Text>
+                <Text style={styles.title}>{name}</Text>
+                <Text style={styles.subTitle}>{model_number}</Text>
 
             </View>
 

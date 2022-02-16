@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Text, View, StyleSheet } from "react-native";
-import { fetchUsers } from "lib/api";
+import { FlatList } from "react-native";
 import userData from "../api/users.json"
 import UserCard from "../components/UserCard";
 
