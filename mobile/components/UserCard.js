@@ -1,18 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
+import dayjs from "dayjs";
+import styles from "../constants/styles";
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    marginTop: "5px",
-    flexDirection: "row"
-  }
-});
 
-function UserStartEndTime({ starts_at, ends_at, device_time_zone }) {
+function UserStartEndTime({ starts_at, ends_at }) {
+
+    const format=(date)=>{
+        return dayjs(date).format("MMM DD HH:MM")
+    }
+
+
+
   return (
-    <Text>
-      {starts_at} - {ends_at}
+    <Text style={styles.date} numberOfLines={1}>
+      {format(starts_at)} - {format(ends_at)}
     </Text>
   );
 }
@@ -20,8 +22,12 @@ function UserStartEndTime({ starts_at, ends_at, device_time_zone }) {
 const statusColors = { current: "#C5F6A7", upcoming: "#F4F6A7" };
 
 function UserStatus({ status }) {
-  const styles = { backgroundColor: statusColors[status] };
-  return <Text style={styles}>{status}</Text>;
+  const styles = { paddingHorizontal: 10,paddingVertical: 5, textTransform:"uppercase", fontWeight:"600"}
+  return <View style={{ alignItems:"flex-end"}}>
+      <View style={{borderRadius:15,  backgroundColor: statusColors[status] }}>
+          <Text style={styles}>{status}</Text>
+      </View>
+  </View>
 }
 
 function UserInfo({
@@ -33,14 +39,18 @@ function UserInfo({
   device_time_zone
 }) {
   return (
-    <View style={{ flexDirection: "column" }}>
-      <Text>{name}</Text>
-      <Text style={{ color: "#EFEFEF" }}>{email}</Text>
-      <UserStartEndTime
-        starts_at={starts_at}
-        ends_at={ends_at}
-        device_time_zone={device_time_zone}
-      />
+    <View style={{ flexDirection: "column",flex:1,alignItems:"stretch",justifyContent:"space-between",height:100,marginStart:10 }}>
+      <View>
+          <Text style={styles.name}>{name}</Text>
+          {email&&<Text style={styles.email}>{email}</Text>}
+          {
+              status==="upcoming"&&<UserStartEndTime
+              starts_at={starts_at}
+              ends_at={ends_at}
+              device_time_zone={device_time_zone}
+              />
+          }
+      </View>
       <UserStatus status={status} />
     </View>
   );
@@ -49,12 +59,15 @@ function UserInfo({
 function UserCard({ item: { attributes } }) {
   return (
     <View style={styles.container}>
-      <Image
-        source={{
-          uri: "http://placekitten.com/g/30/30",
-          height: "30px",
-          width: "30px"
-        }}
+      <View
+          style={{
+              borderRadius:50,
+              width:100,
+              height:100,
+              backgroundColor:"#eee",
+              borderWidth:1,
+              borderColor:"#ccc"
+          }}
       />
       <UserInfo {...attributes} />
     </View>
