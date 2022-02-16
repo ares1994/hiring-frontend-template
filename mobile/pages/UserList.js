@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Text, View, StyleSheet } from "react-native";
-import UserCard from "components/UserCard";
-import { fetchUsers } from "lib/api";
+import { FlatList } from "react-native";
+import userData from "../api/users.json"
+import UserCard from "../components/UserCard";
 
 function UserList() {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    fetchUsers().then((res) => setUsers(res.data));
-  }, []);
+
   return (
     <FlatList
       style={{
         backgroundColor: "#EEEEEE",
-        padding: "3px",
+        padding: 3,
       }}
-      data={users}
-      renderItem={UserCard}
+      data={userData.data}
+      renderItem={({item})=>{
+          return <UserCard item={item} />
+      }}
       keyExtractor={(x) => x.id}
     />
   );
