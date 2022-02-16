@@ -2,14 +2,9 @@ import React, {useEffect} from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import dayjs from "dayjs";
 import styles from "../constants/styles";
-
+import format from "../util/format";
 
 function UserStartEndTime({ starts_at, ends_at }) {
-
-    const format=(date)=>{
-        return dayjs(date).format("MMM DD HH:MM")
-    }
-
 
 
   return (
